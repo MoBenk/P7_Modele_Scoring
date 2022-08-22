@@ -32,27 +32,27 @@ def main() :
     def chargement_donnees():
         
         # Informations sur le client choisi dans le jeu de données Test sans Target
-        with open('https://github.com/MoBenk/P7_Model_Scoring/blob/main/informations_client_test.pkl', 'rb') as f:                  
+        with open('dossier_pkl/informations_client_test.pkl', 'rb') as f:                  
             informations_client_test =pickle.load(f)
-        with open('https://github.com/MoBenk/P7_Model_Scoring/blob/main/selection_clients.pkl', 'rb') as f:                  
+        with open('dossier_pkl/selection_clients.pkl', 'rb') as f:                  
             selection_clients =pickle.load(f)
         
         # Jeu de données pour les comparaisons dans la jeu de données Train avec Target
-        with open('https://github.com/MoBenk/P7_Model_Scoring/blob/main/compare_train.pkl', 'rb') as f:                  
+        with open('dossier_pkl/compare_train.pkl', 'rb') as f:                  
             compare_train =pickle.load(f)
-        with open('https://github.com/MoBenk/P7_Model_Scoring/blob/main/compare_client.pkl', 'rb') as f:                  
+        with open('dossier_pkl/compare_client.pkl', 'rb') as f:                  
             compare_client =pickle.load(f)
         
         # Jeu de données pour la prédiction dans le jeu de données Test avec le modèle du classifieur final Xgboost 
-        with open('https://github.com/MoBenk/P7_Model_Scoring/blob/main/data_test_std_300_sample.pkl', 'rb') as f:                  
+        with open('dossier_pkl/data_test_std_300_sample.pkl', 'rb') as f:                  
             data_test_std_300_sample =pickle.load(f)
         
         # Jeux de données pour l'importance des fonctionnalités(SHAP Values)
-        with open('https://github.com/MoBenk/P7_Model_Scoring/blob/main/train_shap.pkl', 'rb') as f:                  
+        with open('dossier_pkl/train_shap.pkl', 'rb') as f:                  
             train_shap =pickle.load(f) 
-        with open('https://github.com/MoBenk/P7_Model_Scoring/blob/main/test_shap.pkl', 'rb') as f:                  
+        with open('dossier_pkl/test_shap.pkl', 'rb') as f:                  
              test_shap =pickle.load(f) 
-        with open('https://github.com/MoBenk/P7_Model_Scoring/blob/main/y_shap.pkl', 'rb') as f:                  
+        with open('dossier_pkl/y_shap.pkl', 'rb') as f:                  
              y_shap=pickle.load(f) 
         
         
@@ -97,7 +97,7 @@ def main() :
     # Chargement des données ……
     informations_client_test, selection_clients, compare_train, compare_client, data_test_std_300_sample, target, train_shap, test_shap, y_shap=chargement_donnees()
     identifiants_client = selection_clients['ID'].values
-    with open('https://github.com/MoBenk/P7_Model_Scoring/blob/main/clf.pkl', 'rb') as f:                  
+    with open('dossier_pkl/clf.pkl', 'rb') as f:                  
          clf =pickle.load(f) 
     prediction_test = predict_model (clf,  probability_threshold = 0.74, data = data_test_std_300_sample)
      
@@ -125,7 +125,7 @@ def main() :
     st.write(html_temp, unsafe_allow_html=True)
     
    ### Affichage logo Prêt à dépenser ###
-    with open('https://github.com/MoBenk/P7_Model_Scoring/blob/main/im.pkl', 'rb') as f:                  
+    with open('dossier_pkl/im.pkl', 'rb') as f:                  
         im =pickle.load(f) 
     #st.sidebar: Cette fonction est utilisée pour créer une barre latérale sur le tableau de bord, puis nous pourrons mettre des données sur cette partie.
     #st.sidebar.columns: pour placer des colonnes dans la barre latérale, puis pour ajouter n’importe quel élément ou composant disponible à partir de la         bibliothèque Streamlit dans cette colonne
